@@ -15,7 +15,7 @@ kubectl apply -f openvino-model-server.ymal
 3. Forward traffic from localhost to the Kubernetes service
 
 ```
-kubectl port-forward service/openvino-model-server 8501:8501
+kubectl port-forward service/openvino-model-server 9000:9000
 ```
 
 4. Follow steps 7 and 8 from the [OVMS Quickstart](https://github.com/openvinotoolkit/model_server/blob/main/docs/ovms_quickstart.md).
@@ -34,5 +34,5 @@ curl --create-dirs https://download.01.org/opencv/2021/openvinotoolkit/2021.1/op
 
 ```
 docker build . -t <NAME>
-docker push <NAME>:<TAG>
+docker push <NAME>
 ```
