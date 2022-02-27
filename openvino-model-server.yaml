@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openvino-model-server
+  labels:
+    app: openvino-model-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openvino-model-server
+  template:
+    metadata:
+      labels:
+        app: openvino-model-server
+    spec:
+      containers:
+      - name: openvino-model-server
+        image: natalieserrino/openvino-face-detector-server:0.0.1
+        ports:
+        - containerPort: 9000
+          name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: openvino-model-server
+spec:
+  selector:
+    app: openvino-model-server
+  ports:
+    - protocol: TCP
+      port: 9000
+      targetPort: 9000
+      name: http
